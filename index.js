@@ -16,6 +16,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const { port, dbURI, env } = require('./config/environment');
 const routes = require('./config/routes');
+const errorHandler = require('./lib/errorHandler');
 
 mongoose.connect(dbURI);
 
@@ -25,6 +26,8 @@ app.use(bodyParser.json());
 
 app.use('/api', routes);
 app.get('/*', (req, res) => res.sendFile(`${__dirname}/public/index.html`));
+
+app.use(errorHandler);
 
 server.listen(port, () => console.log(`Express is listening on port ${port}`));
 

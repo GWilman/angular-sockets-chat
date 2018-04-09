@@ -1,0 +1,19 @@
+<section class="section">
+  <form>
+    <div class="field">
+      <label class="label">Email</label>
+      <div class="control">
+        <input class="input" type="text" name="email" [(ngModel)]="user.email" placeholder="Email">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Password</label>
+      <div class="control">
+        <input class="input" type="password" name="password" [(ngModel)]="user.password" placeholder="Password">
+      </div>
+    </div>
+    <div class="control">
+      <button class="button is-primary" (click)="login()">Login</button>
+    </div>
+  </form>
+</section>
