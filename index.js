@@ -13,6 +13,7 @@ mongoose.plugin(require('./lib/globalToJSON'));
 mongoose.plugin(require('mongoose-unique-validator'));
 
 const morgan = require('morgan');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const { port, dbURI, env } = require('./config/environment');
 const routes = require('./config/routes');
@@ -22,6 +23,7 @@ mongoose.connect(dbURI);
 
 if('test' !== env) app.use(morgan('dev'));
 app.use(express.static(`${__dirname}/public`));
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/api', routes);

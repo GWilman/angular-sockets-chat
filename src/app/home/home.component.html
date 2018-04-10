@@ -1,5 +1,7 @@
-<p>
-  home works!
+<div *ngIf="!authService.isAuthenticated()">
   <a routerLink="/login">Login</a>
   <a routerLink="/register">Register</a>
-</p>
+</div>
+<div *ngIf="authService.isAuthenticated()">
+  <a (click)="logout()">Logout</a>
+</div>

@@ -1,5 +1,5 @@
 <section class="section">
-  <form>
+  <form (ngSubmit)="handleSubmit()">
     <div class="field">
       <label class="label">Email</label>
       <div class="control">
@@ -11,9 +11,10 @@
       <div class="control">
         <input class="input" type="password" name="password" [(ngModel)]="user.password" placeholder="Password">
       </div>
+      <p *ngIf="error" class="help is-danger">{{error}}</p>
     </div>
     <div class="control">
-      <button class="button is-primary" (click)="login()">Login</button>
+      <button class="button is-primary">Login</button>
     </div>
   </form>
 </section>
