@@ -8,20 +8,22 @@ import { AppRoutingModule } from './/app-routing.module';
 
 // Services
 import { AuthService } from './auth.service';
+import { GroupService } from './group.service';
 
 // Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, GroupService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

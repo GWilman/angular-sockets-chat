@@ -44,10 +44,8 @@ export class RegisterComponent implements OnInit {
   }
 
   handleSubmit(): void {
-    console.log(this.user);
     this.authService.register(this.user)
       .subscribe((res: any) => {
-        console.log(res);
         this.authService.setSession(res.token);
         this.router.navigate(['/']);
       },

@@ -2,6 +2,3 @@
   <a routerLink="/login">Login</a>
   <a routerLink="/register">Register</a>
 </div>
-<div *ngIf="authService.isAuthenticated()">
-  <a (click)="logout()">Logout</a>
-</div>
