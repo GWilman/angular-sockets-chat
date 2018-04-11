@@ -17,30 +17,38 @@ Message.collection.drop();
 Group.collection.drop();
 
 let users = [];
-let messages = [];
+let groups = [];
 
 User
   .create(userData)
   .then(data => {
     console.log(`${data.length} users created`);
     users = data;
-    return Message.create([{
-      user: users[0],
-      content: 'Welcome to my chat app!'
-    }]);
-  })
-  .then(data => {
-    console.log(`${data.length} messages created`);
-    messages = data;
-  })
-  .then(() => {
     return Group.create([{
       name: 'WDI-LDN-32',
       owner: users[0],
-      users: users,
-      messages: messages
+      users: users
     }]);
   })
-  .then(groups => console.log(`${groups.length} groups created`))
+  .then(data => {
+    groups = data;
+    console.log(`${groups.length} groups created`);
+  })
+  .then(() => {
+    return Message.create([{
+      user: users[0],
+      content: 'Welcome to my chat app!',
+      group: groups[0]
+    }, {
+      user: users[1],
+      content: 'Thanks for having me 👍🏻',
+      group: groups[0]
+    }, {
+      user: users[2],
+      content: 'I love footy ⚽️',
+      group: groups[0]
+    }]);
+  })
+  .then(messages => console.log(`${messages.length} messages created`))
   .catch(err => console.error(err))
   .finally(() => mongoose.connection.close());

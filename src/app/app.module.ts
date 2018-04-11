@@ -16,6 +16,8 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { GroupComponent } from './group/group.component';
+import { MessageService } from './message.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    DashboardComponent
+    DashboardComponent,
+    GroupComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService, GroupService],
+  providers: [AuthService, GroupService, MessageService],
   bootstrap: [AppComponent]
 })
 

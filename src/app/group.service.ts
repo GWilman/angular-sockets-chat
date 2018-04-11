@@ -10,4 +10,8 @@ export class GroupService {
     return this.http.get('http://localhost:4000/api/groups');
   }
 
+  getGroup(id) {
+    return this.http.get(`http://localhost:4000/api/groups/${id}`);
+  }
+
 }

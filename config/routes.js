@@ -15,10 +15,14 @@ router.route('/users')
   .get(users.index);
 
 router.route('/messages')
-  .get(messages.index);
+  .get(messages.index)
+  .post(messages.create);
 
 router.route('/groups')
   .get(groups.index);
+
+router.route('/groups/:id')
+  .get(groups.show);
 
 router.route('/*')
   .all((req, res) => res.sendStatus(404));

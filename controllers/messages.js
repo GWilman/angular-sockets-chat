@@ -7,6 +7,14 @@ function messagesIndex(req, res, next) {
     .catch(next);
 }
 
+function messagesCreate(req, res, next) {
+  Message
+    .create(req.body)
+    .then(message => res.status(201).json(message))
+    .catch(next);
+}
+
 module.exports = {
-  index: messagesIndex
+  index: messagesIndex,
+  create: messagesCreate
 };

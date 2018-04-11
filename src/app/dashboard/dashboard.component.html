@@ -1,7 +1,9 @@
 <h1>Dashboard</h1>
 <h2>My groups:</h2>
 <ul *ngIf="groups.length">
-  <li *ngFor="let group of groups">{{group.name}}</li>
+  <li *ngFor="let group of groups">
+    <a routerLink="/groups/{{group._id}}">{{group.name}}</a>
+  </li>
 </ul>
 <div *ngIf="authService.isAuthenticated()">
   <a (click)="logout()">Logout</a>

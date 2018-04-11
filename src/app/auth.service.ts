@@ -26,4 +26,10 @@ export class AuthService {
     return !!localStorage.getItem('token');
   }
 
+  public getPayload() {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+    return JSON.parse(atob(token.split('.')[1]));
+  }
+
 }
