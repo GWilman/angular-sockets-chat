@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
+import * as io from 'socket.io-client';
 
 import { AuthService } from '../auth.service';
 import { GroupService } from '../group.service';
@@ -21,18 +22,32 @@ export class GroupComponent implements OnInit {
     private authService: AuthService) { }
 
   group: {};
+  groupId: String;
+  userId: String;
   now: any;
   newMessage: String;
+  websocket = io('http://localhost:4000');
 
   ngOnInit() {
-    this.getGroup();
+    const userId = this.authService.getPayload().userId;
+    const groupId = this.route.snapshot.paramMap.get('id');
+    this.userId = userId;
+    this.groupId = groupId;
+    this.getGroup(groupId);
     this.now = moment();
     this.newMessage = '';
-    console.log(this.authService.getPayload().userId);
+    this.websocket.on('connect', () => {
+      console.log(`Socket ID: ${this.websocket.id} connected`);
+      console.log('USER ID', userId);
+      this.websocket.emit('set user', { groupId, userId });
+    });
+    this.websocket.on('message sent', data => {
+      console.log('received message', data);
+      this.getGroup(this.groupId);
+    })
   }
 
-  getGroup(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+  getGroup(id): void {
     this.groupService.getGroup(id)
       .subscribe((res: any) => {
         res.createdAt = moment(res.createdAt).format('Do MMMM YYYY');
@@ -46,13 +61,17 @@ export class GroupComponent implements OnInit {
 
   sendMessage(): void {
     const message = {
-      user: this.authService.getPayload().userId,
-      group: this.group,
+      group: this.groupId,
+      user: this.userId,
       content: this.newMessage
     }
 
-    this.messageService.sendMessage(message)
-      .subscribe((res: any) => this.getGroup());
+    this.messageService.saveMessage(message)
+      .subscribe((res: any) => {
+        this.getGroup(this.groupId)
+        this.websocket.emit('message sent', message);
+      });
+
 
     this.newMessage = '';
   }

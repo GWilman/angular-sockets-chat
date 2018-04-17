@@ -6,7 +6,7 @@ export class MessageService {
 
   constructor(private http: HttpClient) { }
 
-  sendMessage(message) {
+  saveMessage(message) {
     return this.http.post('http://localhost:4000/api/messages', message);
   }
 
