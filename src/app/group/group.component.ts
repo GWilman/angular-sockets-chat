@@ -47,7 +47,7 @@ export class GroupComponent implements OnInit {
   sendMessage(): void {
     const message = {
       user: this.authService.getPayload().userId,
-      group: this.group._id,
+      group: this.group,
       content: this.newMessage
     }
 
