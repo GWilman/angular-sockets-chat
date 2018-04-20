@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import * as io from 'socket.io-client';
@@ -27,6 +27,7 @@ export class GroupComponent implements OnInit {
   now: any;
   newMessage: String;
   websocket = io('http://localhost:4000');
+  currentUsers: {};
 
   ngOnInit() {
     const userId = this.authService.getPayload().userId;
@@ -36,15 +37,41 @@ export class GroupComponent implements OnInit {
     this.getGroup(groupId);
     this.now = moment();
     this.newMessage = '';
+
     this.websocket.on('connect', () => {
       console.log(`Socket ID: ${this.websocket.id} connected`);
       console.log('USER ID', userId);
       this.websocket.emit('set user', { groupId, userId });
     });
-    this.websocket.on('message sent', data => {
-      console.log('received message', data);
-      this.getGroup(this.groupId);
+
+    this.websocket.on('update users', data => {
+      this.currentUsers = data;
+      console.log(this.currentUsers);
     })
+
+    this.websocket.on('message sent', data => {
+      this.getGroup(this.groupId);
+    });
+
+    this.websocket.on('user disconnected', socketId => {
+      console.log('socketId:', socketId);
+      this.messageService.saveMessage({
+        group: this.groupId,
+        user: this.currentUsers[socketId],
+        content: 'I\'m leaving now, bye!'
+      })
+        .subscribe((res: any) => {
+          this.getGroup(this.groupId);
+          this.websocket.emit('message sent');
+        });
+
+      delete this.currentUsers[socketId];
+      this.websocket.emit('remove user', { groupId: this.groupId, users: this.currentUsers });
+    });
+  }
+
+  ngOnDestroy() {
+    this.websocket.disconnect(true);
   }
 
   getGroup(id): void {
@@ -54,6 +81,7 @@ export class GroupComponent implements OnInit {
         res.messages.forEach(message => {
           message.createdAt = moment(message.createdAt).fromNow();
         })
+        res.messages = res.messages.reverse();
         this.group = res;
       },
     error => console.error(error));
@@ -68,8 +96,8 @@ export class GroupComponent implements OnInit {
 
     this.messageService.saveMessage(message)
       .subscribe((res: any) => {
-        this.getGroup(this.groupId)
-        this.websocket.emit('message sent', message);
+        this.getGroup(this.groupId);
+        this.websocket.emit('message sent');
       });
 
 

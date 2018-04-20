@@ -31,7 +31,6 @@ export class DashboardComponent implements OnInit {
   getGroups(): void {
     this.groupService.getGroups()
       .subscribe(res => {
-        console.log(res);
         this.groups = res;
       })
   }

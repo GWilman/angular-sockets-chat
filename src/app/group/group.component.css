@@ -1,0 +1,49 @@
+.sideNav {
+  width: 30vw;
+  height: 100vh;
+  background: #e9e9e9;
+  float: left;
+}
+
+.chat {
+  width: 70vw;
+  height: 100vh;
+  float: right;
+}
+
+.header {
+  height: 13%;
+  width: 100%;
+}
+
+.messagesContainer {
+  height: 77%;
+  width: 100%;
+  display:flex;
+  flex-direction:column;
+}
+
+.messages {
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  padding-left: 0.5rem;
+}
+
+.messages h4 {
+  margin-bottom: 0;
+}
+
+.newMessage {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.newMessage form {
+  width: 96%;
+}

@@ -28,6 +28,10 @@ User
       name: 'WDI-LDN-32',
       owner: users[0],
       users: users
+    }, {
+      name: 'WDI-LDN-33',
+      owner: users[2],
+      users: users
     }]);
   })
   .then(data => {
@@ -47,6 +51,14 @@ User
       user: users[2],
       content: 'I love footy ⚽️',
       group: groups[0]
+    }, {
+      user: users[2],
+      content: 'Check out group 2',
+      group: groups[1]
+    }, {
+      user: users[2],
+      content: 'I love WDI-33',
+      group: groups[1]
     }]);
   })
   .then(messages => console.log(`${messages.length} messages created`))
