@@ -1,17 +1,19 @@
 <div class="sideNav">
+  <div *ngIf="group">
+    <h2>Members:</h2>
+    <ul>
+      <li *ngFor="let user of group.users" [ngClass]="user.isOnline && 'green'">{{user.username}}</li>
+    </ul>
+  </div>
 </div>
 <div *ngIf="group" class="chat">
   <div class="header">
     <h1 class="title">{{group.name}}</h1>
     <h2 class="subtitle">Created by {{group.owner.username}} on {{group.createdAt}}</h2>
-    <!-- <h2>Members:</h2>
-    <ul>
-      <li *ngFor="let user of group.users">{{user.username}} <span *ngIf="user.isOnline">online</span></li>
-    </ul> -->
   </div>
   <div class="messagesContainer">
     <div class="messages">
-      <div *ngFor="let message of group.messages">
+      <div *ngFor="let message of group.messages" class="singleMessage">
         <h4 class="title">{{message.user.username}}</h4>
         <p>{{message.createdAt}}</p>
         <p>{{message.content}}</p>

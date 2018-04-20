@@ -40,20 +40,22 @@ export class GroupComponent implements OnInit {
 
     this.websocket.on('connect', () => {
       console.log(`Socket ID: ${this.websocket.id} connected`);
-      console.log('USER ID', userId);
+      // console.log('USER ID', userId);
       this.websocket.emit('set user', { groupId, userId });
     });
 
     this.websocket.on('update users', data => {
       this.currentUsers = data;
-      console.log(this.currentUsers);
+      if (this.group.users) this.checkStatus();
+      // console.log('CurrentUsers', this.currentUsers);
     })
 
-    this.websocket.on('message sent', data => {
+    this.websocket.on('message sent', () => {
       this.getGroup(this.groupId);
     });
 
     this.websocket.on('user disconnected', socketId => {
+      // this.checkStatus();
       console.log('socketId:', socketId);
       this.messageService.saveMessage({
         group: this.groupId,
@@ -66,7 +68,7 @@ export class GroupComponent implements OnInit {
         });
 
       delete this.currentUsers[socketId];
-      this.websocket.emit('remove user', { groupId: this.groupId, users: this.currentUsers });
+      this.websocket.emit('remove user', this.currentUsers);
     });
   }
 
@@ -102,6 +104,18 @@ export class GroupComponent implements OnInit {
 
 
     this.newMessage = '';
+  }
+
+  checkStatus(): void {
+    const sockets = Object.keys(this.currentUsers);
+    console.log('sockets', sockets);
+    for (let userSocket in this.currentUsers) {
+      console.log(userSocket);
+      if (sockets.includes(userSocket)) {
+        const user = this.group.users.find(user => user._id === this.currentUsers[userSocket]);
+        user.isOnline = true;
+      }
+    }
   }
 
 }
