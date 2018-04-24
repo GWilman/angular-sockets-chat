@@ -1,7 +1,7 @@
 .sideNav {
   width: 30vw;
   height: 100vh;
-  background: #e9e9e9;
+  background: linear-gradient(#cdf8ff, #7ad4ff);
   float: left;
 }
 

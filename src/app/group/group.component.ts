@@ -21,7 +21,7 @@ export class GroupComponent implements OnInit {
     private messageService: MessageService,
     private authService: AuthService) { }
 
-  group: {};
+  group: any;
   groupId: String;
   userId: String;
   now: any;
@@ -37,6 +37,7 @@ export class GroupComponent implements OnInit {
     this.getGroup(groupId);
     this.now = moment();
     this.newMessage = '';
+    this.checkStatus();
 
     this.websocket.on('connect', () => {
       console.log(`Socket ID: ${this.websocket.id} connected`);
@@ -46,8 +47,6 @@ export class GroupComponent implements OnInit {
 
     this.websocket.on('update users', data => {
       this.currentUsers = data;
-      if (this.group.users) this.checkStatus();
-      // console.log('CurrentUsers', this.currentUsers);
     })
 
     this.websocket.on('message sent', () => {
@@ -107,15 +106,15 @@ export class GroupComponent implements OnInit {
   }
 
   checkStatus(): void {
-    const sockets = Object.keys(this.currentUsers);
-    console.log('sockets', sockets);
-    for (let userSocket in this.currentUsers) {
-      console.log(userSocket);
-      if (sockets.includes(userSocket)) {
-        const user = this.group.users.find(user => user._id === this.currentUsers[userSocket]);
-        user.isOnline = true;
+    setInterval(() => {
+      const sockets = Object.keys(this.currentUsers);
+      for (let userSocket in this.currentUsers) {
+        if (sockets.includes(userSocket)) {
+          const user = this.group.users.find(user => user._id === this.currentUsers[userSocket]);
+          user.isOnline = true;
+        }
       }
-    }
+    }, 1000);
   }
 
 }
