@@ -1,2 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'bulma/css/bulma.css';
+
+@import url('https://fonts.googleapis.com/css?family=Modak');
+
+/* LOGO */
+
+.logoContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 120px;
+}
+
+.brand {
+	position: absolute;
+	margin: 0;
+	text-align: center;
+	line-height: 100px;
+	font-family: 'Modak', cursive;
+	font-size: 34px;
+	color: #fff;
+	text-shadow: 0 2px 4px #000;
+	overflow: visible;
+	z-index: 1;
+}
+
+.logoBack {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	border: 2px solid #fff;
+	background: linear-gradient(#FFFF00, #73FF00);
+	animation: rotate 12s infinite;
+}
+
+@keyframes rotate {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+
+/* LOGO END */
+
+.fullBackground {
+  height: 100vh;
+  background: linear-gradient(#cdf8ff, #7ad4ff);
+}

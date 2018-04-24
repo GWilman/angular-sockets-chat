@@ -1,4 +1,10 @@
-<div *ngIf="!authService.isAuthenticated()">
-  <a routerLink="/login">Login</a>
-  <a routerLink="/register">Register</a>
-</div>
+<section class="fullBackground">
+  <div class="logoContainer">
+    <h1 class="brand">Schlack</h1>
+    <div class="logoBack"></div>
+  </div>
+  <div *ngIf="!authService.isAuthenticated()" class="container">
+    <a routerLink="/login" class="button homeButton">Login</a>
+    <a routerLink="/register" class="button homeButton">Register</a>
+  </div>
+</section>

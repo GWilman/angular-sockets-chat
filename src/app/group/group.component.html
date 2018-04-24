@@ -1,16 +1,22 @@
-<div class="sideNav">
+<section class="sideNav fullBackground">
   <div class="logoContainer">
   	<h1 class="brand">Schlack</h1>
   	<div class="logoBack"></div>
   </div>
+  <button class="button backButton" (click)="goBack()">
+    <span class="icon">
+      <i class="fas fa-arrow-left"></i>
+    </span>
+    &nbsp;&nbsp;Dashboard
+  </button>
   <div *ngIf="group" class="members">
     <h2>Members:</h2>
     <ul>
       <li *ngFor="let user of group.users" [ngClass]="user.isOnline && 'green'">{{user.username}}</li>
     </ul>
   </div>
-</div>
-<div *ngIf="group" class="chat">
+</section>
+<section *ngIf="group" class="chat">
   <div class="header">
     <h1 class="title">{{group.name}}</h1>
     <h2 class="subtitle">Created by {{group.owner.username}} on {{group.createdAt}}</h2>
@@ -39,4 +45,4 @@
       </div>
     </form>
   </div>
-</div>
+</section>

@@ -1,10 +1,17 @@
-<h1>Dashboard</h1>
-<h2>My groups:</h2>
-<ul *ngIf="groups.length">
-  <li *ngFor="let group of groups">
-    <a routerLink="/groups/{{group._id}}">{{group.name}}</a>
-  </li>
-</ul>
-<div *ngIf="authService.isAuthenticated()">
-  <a (click)="logout()">Logout</a>
-</div>
+<section class="fullBackground">
+  <div class="logoContainer">
+    <h1 class="brand">Schlack</h1>
+    <div class="logoBack"></div>
+  </div>
+  <div class="container">
+    <h2>Your Groups</h2>
+    <ul *ngIf="groups.length" class="groupContainer">
+      <li *ngFor="let group of groups">
+        <a routerLink="/groups/{{group._id}}" class="button groupButton">{{group.name}}</a>
+      </li>
+    </ul>
+    <div *ngIf="authService.isAuthenticated()">
+      <a (click)="logout()" class="button logoutButton">Log Out</a>
+    </div>
+  </div>
+</section>

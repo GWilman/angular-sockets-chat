@@ -1,4 +1,8 @@
-<section class="section">
+<section class="fullBackground">
+  <div class="logoContainer">
+    <h1 class="brand">Schlack</h1>
+    <div class="logoBack"></div>
+  </div>
   <form (ngSubmit)="handleSubmit()">
     <div class="field">
       <label class="label">Username</label>
@@ -57,7 +61,7 @@
       <p *ngIf="errors.passwordConfirmation" class="help is-danger">{{errors.passwordConfirmation}}</p>
     </div>
     <div class="control">
-      <button class="button is-primary">Register</button>
+      <button class="button registerButton">Register</button>
     </div>
   </form>
 </section>

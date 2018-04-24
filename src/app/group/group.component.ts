@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import * as io from 'socket.io-client';
@@ -19,7 +20,8 @@ export class GroupComponent implements OnInit {
     private route: ActivatedRoute,
     private groupService: GroupService,
     private messageService: MessageService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private location: Location) { }
 
   group: any;
   groupId: String;
@@ -117,6 +119,10 @@ export class GroupComponent implements OnInit {
         }
       }
     }, 1000);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }

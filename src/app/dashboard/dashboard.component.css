@@ -1,0 +1,43 @@
+div.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: calc(100% - 120px);
+}
+
+.groupContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.groupButton {
+  margin: 1rem;
+  line-height: normal;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  background: transparent;
+  color: #fff;
+  transition: background .5s ease, color .5s ease;
+}
+
+.groupButton:hover {
+  background: #fff;
+  color: #7ad4ff;
+}
+
+.logoutButton {
+  margin: 1rem;
+  line-height: normal;
+  border: 2px solid #e82020;
+  border-radius: 6px;
+  background: transparent;
+  color: #e82020;
+  transition: background .5s ease, color .5s ease;
+}
+
+.logoutButton:hover {
+  background: #e82020;
+  color: #7ad4ff;
+}

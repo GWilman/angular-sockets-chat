@@ -1,0 +1,24 @@
+section div.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 120px);
+}
+
+.homeButton {
+  width: 200px;
+  height: 100px;
+  margin: 20px;
+  line-height: normal;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  background: transparent;
+  color: #fff;
+  font-size: 2rem;
+  transition: background .5s ease, color .5s ease;
+}
+
+.homeButton:hover {
+  background: #fff;
+  color: #7ad4ff;
+}

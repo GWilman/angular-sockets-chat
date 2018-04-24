@@ -1,55 +1,33 @@
-@import url('https://fonts.googleapis.com/css?family=Modak');
-
 /* SIDENAV */
 
 .sideNav {
   width: 30vw;
-  height: 100vh;
-  background: linear-gradient(#cdf8ff, #7ad4ff);
   float: left;
+  text-align: center;
 }
 
-/* LOGO */
-
-.logoContainer {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: 120px;
+.backButton {
+  line-height: 1;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  background: transparent;
+  color: #fff;
+  transition: background .5s ease, color .5s ease;
 }
 
-.brand {
-	position: absolute;
-	margin: 0;
-	text-align: center;
-	line-height: 100px;
-	font-family: 'Modak', cursive;
-	font-size: 34px;
-	color: #fff;
-	text-shadow: 0 2px 4px #000;
-	overflow: visible;
-	z-index: 1;
+.backButton:hover {
+  background: #fff;
+  color: #7ad4ff;
 }
 
-.logoBack {
-	width: 100px;
-	height: 100px;
-	border-radius: 50%;
-	border: 2px solid #fff;
-	background: linear-gradient(#FFFF00, #73FF00);
-	animation: rotate 12s infinite;
+button.button.backButton .icon {
+  height: 1em;
+  width: 1.8em;
 }
-
-@keyframes rotate {
-	from { transform: rotate(0deg); }
-	to { transform: rotate(360deg); }
-}
-
-/* LOGO END */
 
 .members {
   margin: 1rem;
+  text-align: left;
 }
 
 /* SIDENAV END */

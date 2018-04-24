@@ -1,0 +1,17 @@
+form {
+  margin: 0 10rem;
+}
+
+.registerButton {
+  line-height: normal;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  background: transparent;
+  color: #fff;
+  transition: background .5s ease, color .5s ease;
+}
+
+.registerButton:hover {
+  background: #fff;
+  color: #7ad4ff;
+}
