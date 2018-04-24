@@ -73,6 +73,8 @@ export class GroupComponent implements OnInit {
 
   ngOnDestroy() {
     this.websocket.disconnect(true);
+    delete this.currentUsers[this.websocket.id];
+    this.websocket.emit('remove user', this.currentUsers);
   }
 
   getGroup(id): void {

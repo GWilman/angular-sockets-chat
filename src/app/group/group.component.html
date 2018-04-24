@@ -1,5 +1,9 @@
 <div class="sideNav">
-  <div *ngIf="group">
+  <div class="logoContainer">
+  	<h1 class="brand">Schlack</h1>
+  	<div class="logoBack"></div>
+  </div>
+  <div *ngIf="group" class="members">
     <h2>Members:</h2>
     <ul>
       <li *ngFor="let user of group.users" [ngClass]="user.isOnline && 'green'">{{user.username}}</li>
