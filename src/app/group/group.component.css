@@ -1,7 +1,7 @@
 /* SIDENAV */
 
 .sideNav {
-  width: 30vw;
+  width: 20vw;
   float: left;
   text-align: center;
 }
@@ -59,9 +59,9 @@ button.button.backButton .icon {
 /* SIDENAV END */
 
 .chat {
-  width: 70vw;
+  width: 60vw;
   height: 100vh;
-  float: right;
+  float: left;
   background: #f7f7f7;
 }
 
@@ -120,6 +120,24 @@ button.button.backButton .icon {
   line-height: 1.4;
 }
 
+.userImg {
+  width: 26px;
+  float: left;
+  padding-right: 6px;
+}
+
+.messageContent {
+  width: calc(100% - 26px);
+  float: right;
+}
+
+.singleMessage img {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 1px solid gray;
+}
+
 .newMessage {
   height: 10%;
   width: 100%;
@@ -136,4 +154,22 @@ button.button.backButton .icon {
 
 .newMessage input {
   box-shadow: 0 0 4px #7ad4ff;
+}
+
+/* RIGHT section */
+
+.rightSection {
+  width: 20vw;
+  float: right;
+}
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 1060px) {
+  .rightSection {
+    display: none;
+  }
+  .chat {
+    width: 80vw;
+  }
 }

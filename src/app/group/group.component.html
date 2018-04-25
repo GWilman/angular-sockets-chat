@@ -30,8 +30,14 @@
   <div class="messagesContainer">
     <div class="messages">
       <div *ngFor="let message of group.messages" class="singleMessage">
-        <h4 class="title">{{message.user.username}} <span class="sentAt">{{message.createdAt}}</span></h4>
-        <p>{{message.content}}</p>
+        <div class="userImg">
+          <img *ngIf="!message.user.image" src="https://i.imgur.com/nOjuyGw.png">
+          <img *ngIf="message.user.image" src="{{message.user.image}}">
+        </div>
+        <div class="messageContent">
+          <h4 class="title">{{message.user.username}} <span class="sentAt">{{message.createdAt}}</span></h4>
+          <p>{{message.content}}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -50,4 +56,6 @@
       </div>
     </form>
   </div>
+</section>
+<section class="rightSection fullBackground">
 </section>
