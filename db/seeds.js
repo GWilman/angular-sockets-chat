@@ -32,6 +32,18 @@ User
       name: 'WDI-LDN-33',
       owner: users[2],
       users: users
+    }, {
+      name: 'WDI-LDN-33',
+      owner: users[2],
+      users: users
+    }, {
+      name: 'GA Instructors',
+      owner: users[1],
+      users: users
+    }, {
+      name: 'WDI-LDN-30',
+      owner: users[0],
+      users: users
     }]);
   })
   .then(data => {

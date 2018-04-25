@@ -74,6 +74,8 @@ button.button.backButton .icon {
 .header h1 {
   font-family: 'Archivo Black', sans-serif;
   font-size: 34px;
+  text-shadow: 0 0 1px black;
+  color: #7ad4ff;
 }
 
 .header h2 {
@@ -153,7 +155,7 @@ button.button.backButton .icon {
 }
 
 .newMessage input {
-  box-shadow: 0 0 4px #7ad4ff;
+  border: 2px solid #7ad4ff;
 }
 
 /* RIGHT section */
