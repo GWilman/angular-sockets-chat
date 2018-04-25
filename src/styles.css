@@ -1,7 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'bulma/css/bulma.css';
 
+/* FONTS */
 @import url('https://fonts.googleapis.com/css?family=Modak');
+@import url('https://fonts.googleapis.com/css?family=Archivo+Black');
 
 /* LOGO */
 
@@ -22,7 +24,6 @@
 	font-size: 34px;
 	color: #fff;
 	text-shadow: 0 2px 4px #000;
-	overflow: visible;
 	z-index: 1;
 }
 

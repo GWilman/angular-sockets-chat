@@ -71,6 +71,17 @@ button.button.backButton .icon {
   padding: 0.5rem 1rem;
 }
 
+.header h1 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 34px;
+}
+
+.header h2 {
+  font-size: .8rem;
+  border-bottom: 1px solid #7ad4ff;
+  padding-bottom: .2rem;
+}
+
 .messagesContainer {
   height: 77%;
   width: 100%;
@@ -121,4 +132,8 @@ button.button.backButton .icon {
 
 .newMessage form {
   width: 100%;
+}
+
+.newMessage input {
+  box-shadow: 0 0 4px #7ad4ff;
 }

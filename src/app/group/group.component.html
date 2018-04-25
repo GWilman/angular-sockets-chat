@@ -10,7 +10,7 @@
     &nbsp;&nbsp;Dashboard
   </button>
   <div *ngIf="group" class="members">
-    <h2>Members:</h2>
+    <h2>{{group.name}} members:</h2>
     <ul>
       <li *ngFor="let user of group.users">
         <div class="userInfo">
@@ -25,7 +25,7 @@
 <section *ngIf="group" class="chat">
   <div class="header">
     <h1 class="title">{{group.name}}</h1>
-    <h2 class="subtitle">Created by {{group.owner.username}} on {{group.createdAt}}</h2>
+    <h2 class="subtitle">Created by <span class="has-text-weight-bold">{{group.owner.username}}</span> on {{group.createdAt}}</h2>
   </div>
   <div class="messagesContainer">
     <div class="messages">
