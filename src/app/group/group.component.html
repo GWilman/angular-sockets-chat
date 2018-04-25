@@ -12,7 +12,13 @@
   <div *ngIf="group" class="members">
     <h2>Members:</h2>
     <ul>
-      <li *ngFor="let user of group.users" [ngClass]="user.isOnline && 'green'">{{user.username}}</li>
+      <li *ngFor="let user of group.users">
+        <div class="userInfo">
+          <div *ngIf="!user.isOnline" class="offline"></div>
+          <div *ngIf="user.isOnline" class="online"></div>
+          {{user.username}}
+        </div>
+      </li>
     </ul>
   </div>
 </section>
@@ -24,8 +30,7 @@
   <div class="messagesContainer">
     <div class="messages">
       <div *ngFor="let message of group.messages" class="singleMessage">
-        <h4 class="title">{{message.user.username}}</h4>
-        <p>{{message.createdAt}}</p>
+        <h4 class="title">{{message.user.username}} <span class="sentAt">{{message.createdAt}}</span></h4>
         <p>{{message.content}}</p>
       </div>
     </div>
