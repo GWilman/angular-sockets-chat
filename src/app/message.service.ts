@@ -10,4 +10,12 @@ export class MessageService {
     return this.http.post('http://localhost:4000/api/messages', message);
   }
 
+  editMessage(message, messageId) {
+    return this.http.put(`http://localhost:4000/api/messages/${messageId}`, message);
+  }
+
+  deleteMessage(messageId) {
+    return this.http.delete(`http://localhost:4000/api/messages/${messageId}`);
+  }
+
 }

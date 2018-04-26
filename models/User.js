@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
   username: { type: String, required: 'Username is required.', unique: 'That username has already been taken.' },
   email: { type: String, required: 'Email is required.', unique: 'That email has already been taken.' },
   password: { type: String, required: 'Password is required.' },
-  image: { type: String }
+  image: { type: String, default: 'https://i.imgur.com/nOjuyGw.png' }
 }, {
   timestamps: true
 });

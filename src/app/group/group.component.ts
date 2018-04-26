@@ -28,8 +28,10 @@ export class GroupComponent implements OnInit {
   userId: String;
   now: any;
   newMessage: String;
+  editedMessage: String;
   websocket = io('http://localhost:4000');
   currentUsers: {};
+  messageEditing: String;
 
   ngOnInit() {
     const userId = this.authService.getPayload().userId;
@@ -39,6 +41,8 @@ export class GroupComponent implements OnInit {
     this.getGroup(groupId);
     this.now = moment();
     this.newMessage = '';
+    this.editedMessage = '';
+    this.messageEditing = '';
     this.checkStatus();
 
     this.websocket.on('connect', () => {
@@ -107,6 +111,35 @@ export class GroupComponent implements OnInit {
 
 
     this.newMessage = '';
+  }
+
+  deleteMessage(messageId): void {
+    this.messageService.deleteMessage(messageId)
+      .subscribe((res: any) => {
+        this.getGroup(this.groupId);
+        this.websocket.emit('message sent');
+      });
+  }
+
+  openCloseEdit(message): void {
+    if (this.messageEditing === message._id) return this.messageEditing = 'null';
+    this.editedMessage = message.content;
+    this.messageEditing = message._id;
+  }
+
+  editMessage(messageId): void {
+    const message = {
+      group: this.groupId,
+      user: this.userId,
+      content: this.editedMessage
+    }
+
+    this.messageService.editMessage(message, messageId)
+      .subscribe((res: any) => {
+        this.getGroup(this.groupId);
+        this.websocket.emit('message sent');
+        this.messageEditing = '';
+      });
   }
 
   checkStatus(): void {

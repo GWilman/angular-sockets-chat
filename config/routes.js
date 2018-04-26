@@ -18,6 +18,10 @@ router.route('/messages')
   .get(messages.index)
   .post(messages.create);
 
+router.route('/messages/:id')
+  .put(messages.edit)
+  .delete(messages.delete);
+
 router.route('/groups')
   .get(groups.index);
 

@@ -4,6 +4,7 @@
   width: 20vw;
   float: left;
   text-align: center;
+  border-right: 8px solid #fff;
 }
 
 .backButton {
@@ -80,7 +81,7 @@ button.button.backButton .icon {
 
 .header h2 {
   font-size: .8rem;
-  border-bottom: 1px solid #7ad4ff;
+  border-bottom: 2px solid #7ad4ff;
   padding-bottom: .2rem;
 }
 
@@ -133,11 +134,68 @@ button.button.backButton .icon {
   float: right;
 }
 
+.messageContent textarea {
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.saveEdit, .discardEdit {
+  line-height: 20px;
+  padding: 0 0.7rem;
+  height: 22px;
+  font-size: 0.7rem;
+  margin: 0.2rem 0.2rem 0 0;
+  border: 1px solid #7ad4ff;
+  border-radius: 6px;
+  background: transparent;
+  color: #7ad4ff;
+  transition: background .5s ease, color .5s ease;
+}
+
+.discardEdit {
+  border-color: #e15959;
+  color: #e15959;
+}
+
+.saveEdit:hover {
+  color: #fff;
+  background: #7ad4ff;
+}
+
+.discardEdit:hover {
+  color: #fff;
+  background: #e15959;
+}
+
+.messageActions {
+  display: inline;
+}
+
+.editIcon {
+  height: 16px;
+  width: 16px;
+  margin-right: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+.editIcon .fas {
+  color: #cecece;
+}
+
+.editIcon .fas:hover {
+  color: #b5b5b5;
+}
+
+.delete.is-small {
+  float: right;
+}
+
 .singleMessage img {
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  border: 1px solid gray;
+  border: 1px solid #bfbfbf;
 }
 
 .newMessage {
@@ -155,7 +213,13 @@ button.button.backButton .icon {
 }
 
 .newMessage input {
-  border: 2px solid #7ad4ff;
+  border: 1px solid #bfbfbf;
+  border-radius: 10px;
+}
+
+.newMessage input:focus {
+  box-shadow: 0 0 4px #7ad4ff;
+  border: 1px solid #7ad4ff;
 }
 
 /* RIGHT section */
@@ -163,6 +227,7 @@ button.button.backButton .icon {
 .rightSection {
   width: 20vw;
   float: right;
+  border-left: 8px solid #fff;
 }
 
 /* MEDIA QUERIES */

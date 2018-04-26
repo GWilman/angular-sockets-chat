@@ -30,14 +30,14 @@ div.container {
 .logoutButton {
   margin: 1rem;
   line-height: normal;
-  border: 2px solid #e82020;
+  border: 2px solid #e15959;
   border-radius: 6px;
   background: transparent;
-  color: #e82020;
+  color: #e15959;
   transition: background .5s ease, color .5s ease;
 }
 
 .logoutButton:hover {
-  background: #e82020;
+  background: #e15959;
   color: #7ad4ff;
 }
