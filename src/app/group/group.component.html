@@ -33,11 +33,11 @@
         <p>{{isTyping}} is typing...</p>
       </div>
       <div *ngFor="let message of group.messages" class="singleMessage">
-        <div class="userImg">
-          <img *ngIf="message.user.image" src="{{message.user.image}}">
+        <div class="userImg" *ngIf="!message.isNotice">
+          <img src="{{message.user.image}}">
         </div>
         <div class="messageContent">
-          <h4 class="title">{{message.user.username}}&nbsp;
+          <h4 *ngIf="!message.isNotice" class="title">{{message.user.username}}&nbsp;
             <span class="sentAt">{{message.createdAt}}</span>
             <div class="messageActions" *ngIf="message.user._id == userId">
               <a class="delete is-small" (click)="deleteMessage(message._id)"></a>

@@ -70,12 +70,12 @@ export class GroupComponent implements OnInit {
     });
 
     this.websocket.on('user disconnected', socketId => {
-      // this.checkStatus();
-      console.log('socketId:', socketId);
+      const user = this.group.users.find(user => user._id === this.currentUsers[socketId]);
       this.messageService.saveMessage({
         group: this.groupId,
         user: this.currentUsers[socketId],
-        content: 'I\'m leaving now, bye!'
+        content: `${user.username} left the chat.`,
+        isNotice: true
       })
         .subscribe((res: any) => {
           this.getGroup(this.groupId);
