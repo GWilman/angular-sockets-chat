@@ -5,7 +5,7 @@ module.exports = [{
   passwordConfirmation: 'password',
   image: 'https://media.licdn.com/dms/image/C5603AQHIqgZZTmHLfA/profile-displayphoto-shrink_200_200/0?e=1529866800&v=beta&t=PAPoD4kqowJuh6h2gnDqbQNgWPmvO4SxrfFWcBzw_Mg'
 }, {
-  username: 'Mike',
+  username: 'mickyGinger',
   email: 'mike@mike.com',
   password: 'password',
   passwordConfirmation: 'password',

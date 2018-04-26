@@ -29,6 +29,9 @@
   </div>
   <div class="messagesContainer">
     <div class="messages">
+      <div *ngIf="isTyping" class="singleMessage">
+        <p>{{isTyping}} is typing...</p>
+      </div>
       <div *ngFor="let message of group.messages" class="singleMessage">
         <div class="userImg">
           <img *ngIf="message.user.image" src="{{message.user.image}}">
@@ -62,6 +65,7 @@
             type="text"
             name="newMessage"
             [(ngModel)]="newMessage"
+            (keyup)="checkTyping()"
             placeholder="Message {{group.name}}"
           >
         </div>

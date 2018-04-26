@@ -32,6 +32,7 @@ export class GroupComponent implements OnInit {
   websocket = io('http://localhost:4000');
   currentUsers: {};
   messageEditing: String;
+  isTyping: String;
 
   ngOnInit() {
     const userId = this.authService.getPayload().userId;
@@ -43,6 +44,7 @@ export class GroupComponent implements OnInit {
     this.newMessage = '';
     this.editedMessage = '';
     this.messageEditing = '';
+    this.isTyping = '';
     this.checkStatus();
 
     this.websocket.on('connect', () => {
@@ -57,6 +59,14 @@ export class GroupComponent implements OnInit {
 
     this.websocket.on('message sent', () => {
       this.getGroup(this.groupId);
+    });
+
+    this.websocket.on('typer', user => {
+      if (this.group.users.find(user => user._id === this.userId).username === user) {
+        this.isTyping = '';
+      } else {
+        this.isTyping = user;
+      }
     });
 
     this.websocket.on('user disconnected', socketId => {
@@ -122,9 +132,12 @@ export class GroupComponent implements OnInit {
   }
 
   openCloseEdit(message): void {
-    if (this.messageEditing === message._id) return this.messageEditing = 'null';
-    this.editedMessage = message.content;
-    this.messageEditing = message._id;
+    if (this.messageEditing === message._id) {
+      this.messageEditing = '';
+    } else {
+      this.editedMessage = message.content;
+      this.messageEditing = message._id;
+    }
   }
 
   editMessage(messageId): void {
@@ -152,6 +165,12 @@ export class GroupComponent implements OnInit {
         }
       }
     }, 1000);
+  }
+
+  checkTyping(): void {
+    if (!this.newMessage) return this.websocket.emit('typing', null);
+    const user = this.group.users.find(user => user._id === this.userId);
+    this.websocket.emit('typing', user.username);
   }
 
   goBack(): void {
