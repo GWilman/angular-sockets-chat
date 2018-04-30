@@ -70,17 +70,17 @@ export class GroupComponent implements OnInit {
     });
 
     this.websocket.on('user disconnected', socketId => {
-      const user = this.group.users.find(user => user._id === this.currentUsers[socketId]);
-      this.messageService.saveMessage({
-        group: this.groupId,
-        user: this.currentUsers[socketId],
-        content: `${user.username} left the chat.`,
-        isNotice: true
-      })
-        .subscribe((res: any) => {
-          this.getGroup(this.groupId);
-          this.websocket.emit('message sent');
-        });
+      // const user = this.group.users.find(user => user._id === this.currentUsers[socketId]);
+      // this.messageService.saveMessage({
+      //   group: this.groupId,
+      //   user: this.currentUsers[socketId],
+      //   content: `${user.username} left the chat.`,
+      //   isNotice: true
+      // })
+      //   .subscribe((res: any) => {
+      //     this.getGroup(this.groupId);
+      //     this.websocket.emit('message sent');
+      //   });
 
       delete this.currentUsers[socketId];
       this.websocket.emit('remove user', this.currentUsers);
@@ -158,6 +158,7 @@ export class GroupComponent implements OnInit {
   checkStatus(): void {
     setInterval(() => {
       const sockets = Object.keys(this.currentUsers);
+      this.group.users.forEach(user => user.isOnline = false);
       for (let userSocket in this.currentUsers) {
         if (sockets.includes(userSocket)) {
           const user = this.group.users.find(user => user._id === this.currentUsers[userSocket]);
